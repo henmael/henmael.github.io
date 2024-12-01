@@ -38,7 +38,7 @@ jobs:
       with:
         # Artifact name
         # Path of the directory containing the static assets.
-        path: christmascalendar/dist # default is _site/
+        path: christmascalender/dist # default is _site/
     - name: Deploy GitHub Pages site
       uses: actions/deploy-pages@v4.0.5
       with:
