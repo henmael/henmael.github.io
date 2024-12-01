@@ -52,7 +52,7 @@ jobs:
         timeout: 600
         error_count: 5
         reporting_interval: 10000
-        artifact_name: github-pages
+        #artifact_name: github-pages
         #retention-days: # optional, default is 1
           
           
