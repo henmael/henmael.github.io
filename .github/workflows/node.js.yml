@@ -48,7 +48,7 @@ jobs:
       uses: actions/deploy-pages@v4.0.5
       with:
         # GitHub token
-        token: ${{ github.token }} 
+        token: ${{ github.token }}
         #retention-days: # optional, default is 1
           
           
