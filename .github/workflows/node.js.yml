@@ -21,7 +21,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [18.x, 20.x, 22.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -49,7 +49,7 @@ jobs:
       with:
         # GitHub token
         token: ${{ github.token }}
-        timeout: 60000
+        timeout: 600
         error_count: 5
         reporting_interval: 10000
         artifact_name: github-pages
