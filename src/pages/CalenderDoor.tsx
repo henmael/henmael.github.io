@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useParams } from "react-router-dom"
+import snow from '../assets/snow.gif'
 
 export function CalenderDoor(){
     const {id} = useParams();
@@ -64,11 +65,26 @@ export function CalenderDoor(){
 
     return (
        <Box display='grid' justifyContent='center' textAlign='center' gap={2}>
-            <Typography variant="h1">{text+id}</Typography>
-            <Typography variant='h4'>Christmas song</Typography>
-            <Typography variant='body2'>{song}</Typography>
-            <Typography variant='h4'>Quotes for the Day</Typography>
-            <Typography variant='body2'>{quotes}</Typography>
+                         <img
+                src={snow}
+                alt="Animated GIF - snow"
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    zIndex: -1
+                }}
+                />
+            <Box border={2} width={1000} height={1000} sx={{backgroundColor: 'black'}}>
+                <Typography variant="h1">{text+id}</Typography>
+                <Typography variant='h4'>Christmas song</Typography>
+                <Typography variant='body2'>{song}</Typography>
+                <Typography variant='h4'>Quotes for the Day</Typography>
+                <Typography variant='body2'>{quotes}</Typography>
+            </Box>
        </Box>
     )
 }
