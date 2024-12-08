@@ -65,7 +65,7 @@ export function CalenderDoor(){
     return (
        <Box display='grid' justifyContent='center' textAlign='center' gap={2}>
             <Typography variant="h1">{text+id}</Typography>
-            <Typography variant='h4'>Chrsitmas song</Typography>
+            <Typography variant='h4'>Christmas song</Typography>
             <Typography variant='body2'>{song}</Typography>
             <Typography variant='h4'>Quotes for the Day</Typography>
             <Typography variant='body2'>{quotes}</Typography>
