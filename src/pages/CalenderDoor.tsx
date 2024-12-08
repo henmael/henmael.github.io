@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom"
 
 export function CalenderDoor(){
     const {id} = useParams();
-    let text = 'Door ';
-    let christmasSong = [
+    const text = 'Door ';
+    const christmasSong = [
         'Musevisa',
         'Do You Hear What I Hear?',
         'Christmas Time Is Here',
@@ -31,7 +31,7 @@ export function CalenderDoor(){
         'Its Begninning to Look a Lot like Christmas'
     ]
 
-    let song = christmasSong.filter((_, index) => index === Number(id)-1);
+    const song = christmasSong.filter((_, index) => index === Number(id)-1);
 
     const christmasNorwegianQuotes = [
         'Det finnes ikke dårlig vær, bare dårlige klær',
@@ -60,7 +60,7 @@ export function CalenderDoor(){
         'Jeg elsker vinteren i Norge! Man kan sjekke ut klesstilen for dagen hvor en man ser'
     ]
 
-    let quotes = christmasNorwegianQuotes.filter((_, index) => index === Number(id)-1);
+    const quotes = christmasNorwegianQuotes.filter((_, index) => index === Number(id)-1);
 
     return (
        <Box display='grid' justifyContent='center' textAlign='center' gap={2}>
