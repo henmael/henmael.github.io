@@ -1,4 +1,4 @@
-import { Typography, Paper, Stack, Button, Box } from "@mui/material";
+import { Typography, Paper, Stack, Button, Box, createTheme, ThemeProvider } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import christmas from '../assets/image.png'
@@ -9,19 +9,33 @@ export function Calender(){
     const [calendarZoomed, setCalendarZoomed] = useState(false);
     const [clickedNumber, setClickedNumber] = useState<number>(0);
 
+    const date = new Date();
+
     function handleClick (doorId: number){
       setCalendarZoomed(true);
 
       setTimeout(() => {
         navigate('/door/' + doorId);
-      }, 500); // Adjust the delay as needed
+      }, 500); 
       setClickedNumber(doorId);
     }
 
-    /**
-     * transition: 'transform 0.3s',
-        transform: calendarZoomed ? 'scale(6) translateZ(100px)' : 'scale(1) translateZ(0)'}}
-     */
+    const theme = createTheme({
+      components: {
+        MuiButton: {
+          styleOverrides: {
+            root: {
+              "&.Mui-disabled": {
+                opacity: 0.6, 
+                backgroundColor: "rgba(255, 255, 255, 0.2)", 
+                color: "black", 
+              },
+            },
+          },
+        },
+      },
+    });
+    
 
     return (
         <Box height='100vh' display="flex" flexDirection="column">
@@ -39,15 +53,17 @@ export function Calender(){
                 {Array.from({ length: 6 }, (_, rowIndex) => (
                         <Stack direction="row" spacing={30} mb={2} justifyContent="center" key={rowIndex}>
                         {buttons.slice(rowIndex * 4, rowIndex * 4 + 4).map((buttonNumber, colIndex) => (
-                                <Button key={colIndex} onClick={() => handleClick(rowIndex * 4 + colIndex+1)}
+                          <ThemeProvider theme={theme}>
+                                <Button disabled={date.getDate() < rowIndex * 4 + colIndex+1} key={colIndex} onClick={() => handleClick(rowIndex * 4 + colIndex+1)}
                                   sx={{fontSize: 40,
                                     opacity: calendarZoomed && clickedNumber !== buttonNumber ? 0 : 1, border: 3, margin: '0',
                                     textAlign: 'center', 
-                                    color: 'black', fontWeight: 'bold', 
+                                    color: 'white', fontWeight: 'bold', 
                                     backgroundColor: 'rgba(255, 255, 255, 0.2)', 
                                     width: 2}}>
                                 {buttonNumber}
                               </Button>
+                          </ThemeProvider>
                         ))}
                       </Stack>
                   ))}
