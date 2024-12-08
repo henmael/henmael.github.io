@@ -1,6 +1,6 @@
 import { Typography, Paper, Stack, Button, Box, createTheme, ThemeProvider } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import christmas from '../assets/image.png'
+import christmas from '../assets/christmas.png'
 
 export function Calender(){
     const navigate = useNavigate();
