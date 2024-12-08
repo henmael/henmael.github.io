@@ -1,10 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import { useParams } from "react-router-dom"
+import snow from '../assets/snow.gif'
 
 export function CalenderDoor(){
     const {id} = useParams();
-    let text = 'Door ';
-    let christmasSong = [
+    const text = 'Door ';
+    const christmasSong = [
         'Musevisa',
         'Do You Hear What I Hear?',
         'Christmas Time Is Here',
@@ -31,7 +32,7 @@ export function CalenderDoor(){
         'Its Begninning to Look a Lot like Christmas'
     ]
 
-    let song = christmasSong.filter((_, index) => index === Number(id)-1);
+    const song = christmasSong.filter((_, index) => index === Number(id)-1);
 
     const christmasNorwegianQuotes = [
         'Det finnes ikke dårlig vær, bare dårlige klær',
@@ -60,15 +61,30 @@ export function CalenderDoor(){
         'Jeg elsker vinteren i Norge! Man kan sjekke ut klesstilen for dagen hvor en man ser'
     ]
 
-    let quotes = christmasNorwegianQuotes.filter((_, index) => index === Number(id)-1);
+    const quotes = christmasNorwegianQuotes.filter((_, index) => index === Number(id)-1);
 
     return (
        <Box display='grid' justifyContent='center' textAlign='center' gap={2}>
-            <Typography variant="h1">{text+id}</Typography>
-            <Typography variant='h4'>Christmas song</Typography>
-            <Typography variant='body2'>{song}</Typography>
-            <Typography variant='h4'>Quotes for the Day</Typography>
-            <Typography variant='body2'>{quotes}</Typography>
+                         <img
+                src={snow}
+                alt="Animated GIF - snow"
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    zIndex: -1
+                }}
+                />
+            <Box border={2} width={1000} height={1000} sx={{backgroundColor: 'black'}}>
+                <Typography variant="h1">{text+id}</Typography>
+                <Typography variant='h4'>Christmas song</Typography>
+                <Typography variant='body2'>{song}</Typography>
+                <Typography variant='h4'>Quotes for the Day</Typography>
+                <Typography variant='body2'>{quotes}</Typography>
+            </Box>
        </Box>
     )
 }
