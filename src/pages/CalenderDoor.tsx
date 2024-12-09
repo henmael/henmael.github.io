@@ -1,9 +1,12 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Card, CardMedia, Typography } from "@mui/material";
 import { useParams } from "react-router-dom"
 import snow from '../assets/snow.gif'
+import advent from '../assets/advent.png'
+import christmasCozy from '../assets/christmasSunday.png'
 
 export function CalenderDoor(){
     const {id} = useParams();
+    const date = new Date(2024, 11, Number(id));
     const text = 'Door ';
     const christmasSong = [
         'Musevisa',
@@ -64,14 +67,40 @@ export function CalenderDoor(){
     const quotes = christmasNorwegianQuotes.filter((_, index) => index === Number(id)-1);
 
     return (
-       <Box display='flex' justifyContent='center' textAlign='center' height='100vh' width='100vw' alignItems='center' gap={2} >
-            <Box display='grid' border={2} sx={{backgroundColor: 'black'}} alignContent='center' justifyContent='center'>
-                <Typography variant="h1">{text+id}</Typography>
-                <Typography variant='h4'>Christmas song</Typography>
-                <Typography variant='body2'>{song}</Typography>
-                <Typography variant='h4'>Quotes for the Day</Typography>
-                <Typography variant='body2'>{quotes}</Typography>
+       <Box display='flex'  justifyContent='center' textAlign='center' height='100vh' alignItems='center' gap={2} >
+            <Box display='grid' color='black' border={4} padding={5} gap={0.8}
+            sx={{backgroundColor: 'red', borderRadius: 10}} 
+            alignContent='center' 
+            justifyItems='center' 
+            alignItems='center' 
+            justifyContent='center'>
+                <Typography fontWeight='bold' variant="h2">{text+id}</Typography>
+                <Typography fontWeight='bold' variant='h4'>Christmas song</Typography>
+                <Typography fontWeight='bold'>{song}</Typography>
+                <Typography variant='h4' mt={4} fontWeight='bold'>Quotes for the Day</Typography>
+                <Typography fontWeight='bold'>{quotes}</Typography>
+                {date.getDay() === 0 ? (
+                        <CardMedia
+                        component='img'
+                        image={advent}
+                        style={{
+                            borderRadius: 10,
+                            marginTop: 20
+                        }}
+                    />
+                ) : (
+                    <CardMedia
+                    component='img'
+                    image={christmasCozy}
+                    style={{
+                        borderRadius: 10,
+                        marginTop: 20
+                    }}
+                />
+                )}
+
             </Box>
+
             <img
                 src={snow}
                 alt="Animated GIF - snow"
