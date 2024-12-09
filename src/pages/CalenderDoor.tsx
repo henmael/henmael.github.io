@@ -1,4 +1,4 @@
-import { Box, Card, CardMedia, Typography } from "@mui/material";
+import { Box, CardMedia, Typography } from "@mui/material";
 import { useParams } from "react-router-dom"
 import snow from '../assets/snow.gif'
 import advent from '../assets/advent.png'
