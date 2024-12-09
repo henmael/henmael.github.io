@@ -64,8 +64,15 @@ export function CalenderDoor(){
     const quotes = christmasNorwegianQuotes.filter((_, index) => index === Number(id)-1);
 
     return (
-       <Box display='grid' justifyContent='center' textAlign='center' gap={2}>
-                         <img
+       <Box display='flex' justifyContent='center' textAlign='center' height='100vh' width='100vw' alignItems='center' gap={2} >
+            <Box display='grid' border={2} sx={{backgroundColor: 'black'}} alignContent='center' justifyContent='center'>
+                <Typography variant="h1">{text+id}</Typography>
+                <Typography variant='h4'>Christmas song</Typography>
+                <Typography variant='body2'>{song}</Typography>
+                <Typography variant='h4'>Quotes for the Day</Typography>
+                <Typography variant='body2'>{quotes}</Typography>
+            </Box>
+            <img
                 src={snow}
                 alt="Animated GIF - snow"
                 style={{
@@ -78,13 +85,7 @@ export function CalenderDoor(){
                     zIndex: -1
                 }}
                 />
-            <Box border={2} width={1000} height={1000} sx={{backgroundColor: 'black'}}>
-                <Typography variant="h1">{text+id}</Typography>
-                <Typography variant='h4'>Christmas song</Typography>
-                <Typography variant='body2'>{song}</Typography>
-                <Typography variant='h4'>Quotes for the Day</Typography>
-                <Typography variant='body2'>{quotes}</Typography>
-            </Box>
        </Box>
     )
 }
+

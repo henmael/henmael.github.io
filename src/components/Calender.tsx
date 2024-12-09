@@ -1,4 +1,4 @@
-import { Typography, Paper, Stack, Button, Box, createTheme, ThemeProvider } from "@mui/material";
+import { Typography, Paper, Stack, Button, Box, createTheme, ThemeProvider, useMediaQuery } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import christmas from '../assets/image.png'
 
@@ -7,10 +7,15 @@ export function Calender(){
     const buttons = Array.from({ length: 24 }, (_, index) => index + 1);
 
     const date = new Date();
+    const matches = useMediaQuery('(min-width:600px)');
+    const sizeCol = matches ? 4 : 2; // Columns change based on screen size
 
     function handleClick (doorId: number){
       navigate('/door/' + doorId);
     }
+
+
+
 
     const theme = createTheme({
       components: {
@@ -39,19 +44,19 @@ export function Calender(){
                   justifyContent='center' 
                   alignItems='center' 
                   flexGrow={1}>
-                <Paper sx={{backgroundImage: `url(${christmas})`,backgroundPosition: 'center', padding: 2,  backgroundRepeat: 'no-repeat', backgroundSize: 'cover',
+                <Paper sx={{backgroundImage: `url(${christmas})`,backgroundPosition: 'center', paddingTop: '0.5rem', paddingLeft: '0.2rem', paddingRight: '0.2rem', backgroundRepeat: 'no-repeat', backgroundSize: 'cover',
                             position: 'relative', margin: 'auto', }}>
-                {Array.from({ length: 6 }, (_, rowIndex) => (
-                        <Stack direction="row" spacing={30} mb={2} justifyContent="center" key={rowIndex}>
-                        {buttons.slice(rowIndex * 4, rowIndex * 4 + 4).map((buttonNumber, colIndex) => (
-                          <ThemeProvider theme={theme}>
-                                <Button disabled={date.getDate() < rowIndex * 4 + colIndex+1} key={colIndex} onClick={() => handleClick(rowIndex * 4 + colIndex+1)}
+                {Array.from({ length: Math.ceil(buttons.length / sizeCol) }, (_, rowIndex) => (
+                        <Stack key={rowIndex} direction="row" spacing={30} mb={2} justifyContent="center">
+                        {buttons.slice(rowIndex * sizeCol, (rowIndex + 1) * sizeCol).map((buttonNumber, colIndex) => (
+                          <ThemeProvider key={colIndex} theme={theme}>
+                                <Button disabled={date.getDate() < buttonNumber} key={colIndex} onClick={() => handleClick(buttonNumber)}
                                   sx={{fontSize: 40,
                                     border: 3, margin: '0',
                                     textAlign: 'center', 
                                     color: 'white', fontWeight: 'bold', 
                                     backgroundColor: 'rgba(255, 255, 255, 0.2)', 
-                                    width: 2}}>
+                                    width: matches ? '5rem' : '3rem'}}>
                                 {buttonNumber}
                               </Button>
                           </ThemeProvider>
