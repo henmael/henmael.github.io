@@ -26,7 +26,7 @@ interface SnowFlake {
   // Generate some snow flakes.
   const flakes: SnowFlake[] = [];
   const numOfFlakes = randomInt(300, 600);
-  for (var i = 0; i < numOfFlakes; i++) {
+  for (let i = 0; i < numOfFlakes; i++) {
     flakes.push({
       x: randomInt(0, canvas.width),
       y: randomInt(0, canvas.height),
