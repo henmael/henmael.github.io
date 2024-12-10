@@ -2,7 +2,8 @@ import { Box, CardMedia, Typography } from "@mui/material";
 import { useParams } from "react-router-dom"
 import advent from '../assets/advent.png'
 import christmasCozy from '../assets/christmasSunday.png'
-import { draw } from "../components/SnowFlake";
+import { draw, initSnowAnimation, stopSnowAnimation } from "../components/SnowFlake";
+import { useEffect } from "react";
 
 export function CalenderDoor(){
     const {id} = useParams();
@@ -66,7 +67,16 @@ export function CalenderDoor(){
 
     const quotes = christmasNorwegianQuotes.filter((_, index) => index === Number(id)-1);
 
-    draw();
+    useEffect(() => {
+        // Start the snow animation
+        initSnowAnimation();
+
+        // Cleanup function
+        return () => {
+            // Stop the snow animation
+            stopSnowAnimation();
+        };
+    }, []); // Empty dependency array means this effect runs once on mount and cleans up on unmount
 
     return (
        <Box display='flex'  justifyContent='center' textAlign='center' height='100vh' alignItems='center' gap={2} >
