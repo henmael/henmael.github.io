@@ -1,8 +1,8 @@
 import { Box, CardMedia, Typography } from "@mui/material";
 import { useParams } from "react-router-dom"
-import snow from '../assets/snow.gif'
 import advent from '../assets/advent.png'
 import christmasCozy from '../assets/christmasSunday.png'
+import { draw } from "../components/SnowFlake";
 
 export function CalenderDoor(){
     const {id} = useParams();
@@ -66,10 +66,12 @@ export function CalenderDoor(){
 
     const quotes = christmasNorwegianQuotes.filter((_, index) => index === Number(id)-1);
 
+    draw();
+
     return (
        <Box display='flex'  justifyContent='center' textAlign='center' height='100vh' alignItems='center' gap={2} >
-            <Box display='grid' color='black' border={4} padding={5} gap={0.8}
-            sx={{backgroundColor: 'red', borderRadius: 10}} 
+            <Box display='grid' color='white' padding={5} gap={0.8}
+            sx={{backgroundColor: '#d31313', borderRadius: 10}} 
             alignContent='center' 
             justifyItems='center' 
             alignItems='center' 
@@ -77,7 +79,7 @@ export function CalenderDoor(){
                 <Typography fontWeight='bold' variant="h2">{text+id}</Typography>
                 <Typography fontWeight='bold' variant='h4'>Christmas song</Typography>
                 <Typography fontWeight='bold'>{song}</Typography>
-                <Typography variant='h4' mt={4} fontWeight='bold'>Quotes for the Day</Typography>
+                <Typography variant='h4' mt={4} fontWeight='bold'>Quote of the Day</Typography>
                 <Typography fontWeight='bold'>{quotes}</Typography>
                 {date.getDay() === 0 ? (
                         <CardMedia
@@ -100,21 +102,21 @@ export function CalenderDoor(){
                 )}
 
             </Box>
-
-            <img
-                src={snow}
-                alt="Animated GIF - snow"
-                style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    zIndex: -1
-                }}
-                />
        </Box>
     )
 }
+
+{/* <img */}
+// src={snow}
+// alt="Animated GIF - snow"
+// style={{
+//     position: 'absolute',
+//     top: 0,
+//     left: 0,
+//     width: '100%',
+//     height: '100%',
+//     objectFit: 'cover',
+//     zIndex: -1
+// }}
+// />
 
