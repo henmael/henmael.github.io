@@ -4,6 +4,8 @@ import advent from '../assets/advent.png'
 import christmasCozy from '../assets/christmasSunday.png'
 import { initSnowAnimation, stopSnowAnimation } from "../components/SnowFlake";
 import { useEffect } from "react";
+import { Link as RouterLink } from 'react-router-dom';
+import { Link as MuiLink } from '@mui/material';
 
 export function CalenderDoor(){
     const {id} = useParams();
@@ -67,6 +69,24 @@ export function CalenderDoor(){
 
     const quotes = christmasNorwegianQuotes.filter((_, index) => index === Number(id)-1);
 
+    const juleOppskrift = [
+        ['Biscotti med mandler og sjokolade', 'https://www.matprat.no/oppskrifter/gjester/biscotti-med-mandler-og-sjokolade/', 
+            'Julen er tiden på å bruke mykje mandler i baksten. Så då virker det naturlig å starte med Biscotti med mandler. Biscotti er den nye favorittkakekjeksen. Enkel og rask å lage, og så smaker den så godt -  både med og uten vin.'],
+        ['Peppernøtter', 'https://www.matprat.no/oppskrifter/tradisjon/peppernotter/', 'Peppernøtter er sprø og smakfulle små kjeks, og regnes ofte som en av julens favoritter både av liten og stor.'],
+        ['Sirupsnipper', 'https://www.matprat.no/oppskrifter/tradisjon/sirupsnipper/', 'Sirupsnipper hører til blant julebaksten, og er for mange et symbol på julen. Sprø og gode julekaker, som har lang holdbarhet. En porsjon av denne oppskriften, gir ca. 100 sirupsnipper.'],
+        ['Fattigmann', 'https://www.matprat.no/oppskrifter/tradisjon/fattigmann/', 'Fattigmann hører til blant de tradisjonelle 7 sorter til jul. Eksklusive små julekaker. En porsjon av denne oppskriften, gir ca. 25 fattigmann-kaker.'],
+        ['Krumkaker', 'https://www.matprat.no/oppskrifter/tradisjon/krumkaker/', 'Krumkaker er blant våre aller mest populære julekaker. En porsjon av denne oppskriften gir ca. 25 sprø og knasende gode krumkaker.'],
+        ['Smultringer', 'https://www.matprat.no/oppskrifter/tradisjon/smultringer/', 'Smultringer hører julen til, og er for mange et av de tradisjonelle sju slag, som må på bordet i jula. Smultringer smaker nydelig ellers i året også, så lag gjerne dobbel porsjon når du først er i gang. Smultringer er fine å fryse. '],
+        ['Berlinerkranser', 'https://www.matprat.no/oppskrifter/tradisjon/berlinerkranser/', 'Berlinerkranser, gode og søte småkaker til jul. En favorittkake for mange til jul.'],
+        ['Sarah Bernhardt', 'https://www.matprat.no/oppskrifter/gjester/sarah-bernard/', 'Sarah Bernhardt er en klassiker, og en deilig liten kake. Små bunner av kransekakemasse som toppes med sjokoladekrem, og til slutt dekkes kakene med smeltet sjokolade. Mmm!'],
+        ['Riskrem', 'https://www.matprat.no/oppskrifter/tradisjon/riskrem/', 'Riskrem med rød saus er nydelig, og et av høydepunktene på julaften for mange. Hvem finner mandelen og hva er premien i år? '],
+        ['Fløtekarameller', 'https://www.matprat.no/oppskrifter/kos/flotekarameller/', 'Seige, gode fløtekarameller er julegodt du garantert blir hekta på! Pynt dem med frysetørket bringebær, tyrkisk pepper, flaksalt eller annet godt, og pakk dem inn i cellofan så har du en kjempefin spiselig julegave. Oppskriften gir ca. 50 stk.'],
+        []
+    ]
+
+    const julebakst = juleOppskrift.filter((_, index) => index === Number(id)-1);
+    const paragraphs = 
+
     useEffect(() => {
         // Start the snow animation
         initSnowAnimation();
@@ -79,7 +99,13 @@ export function CalenderDoor(){
     }, []); // Empty dependency array means this effect runs once on mount and cleans up on unmount
 
     return (
-       <Box display='flex'  justifyContent='center' textAlign='center' height='100vh' alignItems='center' gap={2} >
+       <Box display='flex'  justifyContent='center' textAlign='center' sx={{ 
+        backgroundColor: '#d31313', 
+        borderRadius: 10, 
+        maxWidth: '1000px', // Set a max width for the inner box
+        width: '100%', // Allow it to be responsive
+        margin: '0 auto' // Center it horizontally
+    }}  alignItems='center' gap={2} >
             <Box display='grid' color='white' padding={5} gap={0.8}
             sx={{backgroundColor: '#d31313', borderRadius: 10}} 
             alignContent='center' 
@@ -91,6 +117,36 @@ export function CalenderDoor(){
                 <Typography fontWeight='bold'>{song}</Typography>
                 <Typography variant='h4' mt={4} fontWeight='bold'>Quote of the Day</Typography>
                 <Typography fontWeight='bold'>{quotes}</Typography>
+                <Typography fontWeight='bold' variant='h4' mt={4}>Dagens julebakst</Typography>
+                {julebakst.map((oppskrift, indeks) => (
+                    <Box key={indeks} sx={{ maxWidth: '100%', overflow: 'hidden' }}>
+    <MuiLink 
+        component={RouterLink} 
+        to={oppskrift[1]} 
+        color="rgba(255,255,255)" 
+        fontWeight='bold' 
+        fontFamily='Roboto, Arial'
+        sx={{ display: 'block', marginBottom: 1 }}
+    >
+        {oppskrift[0]}
+    </MuiLink>
+    <Typography 
+        component="div" 
+        fontWeight='bold' 
+        mt={2}
+        sx={{
+            display: '-webkit-box',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            textAlign: 'center',
+        }}
+    >
+        {oppskrift[2]}
+    </Typography>
+</Box>
+                ))}
                 {date.getDay() === 0 ? (
                         <CardMedia
                         component='img'
