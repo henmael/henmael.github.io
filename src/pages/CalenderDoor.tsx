@@ -2,7 +2,7 @@ import { Box, CardMedia, Typography } from "@mui/material";
 import { useParams } from "react-router-dom"
 import advent from '../assets/advent.png'
 import christmasCozy from '../assets/christmasSunday.png'
-import { draw, initSnowAnimation, stopSnowAnimation } from "../components/SnowFlake";
+import { initSnowAnimation, stopSnowAnimation } from "../components/SnowFlake";
 import { useEffect } from "react";
 
 export function CalenderDoor(){
